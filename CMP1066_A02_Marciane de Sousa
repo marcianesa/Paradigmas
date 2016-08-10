@@ -1,0 +1,100 @@
+//Escreva um programa que leia uma frase e um caractere extra e faça:
+//  • Conte quantas vogais existe na frase
+//e imprima uma mensagem informando esta quantidade.
+//  • Conte quantas quantas consoantes existe na frase
+//e imprima uma mensagem informando esta quantidade.
+//  • Conte quantas vezes um certo caractere informado pelo
+//usuário ( digito extra ) aparece na frase.
+//  • Inverta os caracteres da frase de tal forma que o primeiro
+//caractere seja o último e este (ultimo) seja o primeiro, o
+//segundo seja o penúltimo e este seja o segundo, ... .
+//  • Retire da frase todas as ocorrências do caractere informado
+//pelo usuário.
+
+FRANGO frase[1000];
+
+OH O HOME AI PO (MONSTRO contVogais())
+    MONSTRO i, v = 0;
+    MAIS QUERO MAIS (i = 0; frase[i] != '\0'; i++)
+        ELE QUE A GENTE QUER? (frase[i] >= 'a' && frase[i] <= 'z')
+            ELE QUE A GENTE QUER? (frase[i] == 'a' || frase[i] == 'a' || frase[i] == 'e' || frase[i] == 'i' || frase[i] == 'o' || frase[i] == 'u')
+                v++;
+            BIRL
+        BIRL
+    BIRL
+    BORA CUMPADE v;
+BIRL
+
+OH O HOME AI PO (MONSTRO contConsoantes())
+    MONSTRO i, c = 0;
+    MAIS QUERO MAIS (i = 0; frase[i] != '\0'; i++)
+        ELE QUE A GENTE QUER? (frase[i] >= 'a' && frase[i] <= 'z')
+            ELE QUE A GENTE QUER? (frase[i] != 'a' || frase[i] != 'a' || frase[i] != 'e' || frase[i] != 'i' || frase[i] != 'o' || frase[i] != 'u')
+                c++;
+            BIRL
+        BIRL
+    BIRL
+    BORA CUMPADE c;
+BIRL
+
+OH O HOME AI PO (MONSTRO contLetras(FRANGO caractere))
+    MONSTRO i, l = 0;
+    MAIS QUERO MAIS (i = 0; frase[i] != '\0'; i++)
+        ELE QUE A GENTE QUER? (frase[i] >= 'a' && frase[i] <= 'z')
+            ELE QUE A GENTE QUER? (frase[i] == caractere) 
+                l++;
+            BIRL
+        BIRL
+    BIRL
+    BORA CUMPADE l;
+BIRL
+
+OH O HOME AI PO (retirarCaractere(FRANGO caractere))
+    MONSTRO i, j;
+    MAIS QUERO MAIS (i = 0; frase[i] != '\0'; i++)
+		ELE QUE A GENTE QUER? (frase[i] == caractere)
+			MAIS QUERO MAIS (j = i; frase[j] != '\0'; j++) 
+			    frase[j] = frase[j + 1];
+			BIRL
+			 i--;
+		BIRL
+	BIRL
+BIRL
+
+OH O HOME AI PO (inverterFrase())
+    MONSTRO i = 0, j;
+    FRANGO aux;
+    MAIS QUERO MAIS (j = 0; frase[j] != '\0'; j++)
+        i++;
+    BIRL
+    MAIS QUERO MAIS (j = 0; j < i; j++, i--)
+        aux = frase[j];
+		frase[j] = frase[i];
+		frase[i] = aux;
+    BIRL
+BIRL
+
+HORA DO SHOW
+    FRANGO caractere; 
+    MONSTRO v, c, l;
+    CE QUER VER ESSA PORRA? ("Digite seu nome:\n");
+    QUE QUE CE QUER MONSTRAO? ("%[^\n]s", &frase);
+    CE QUER VER ESSA PORRA? ("Digite o Caractere:\n");
+    QUE QUE CE QUER MONSTRAO? ("%s\n", &caractere);
+    
+    v = AJUDA O MALUCO TA DOENTE contVogais();
+    CE QUER VER ESSA PORRA? ("Quantidade Vogais: %d\n", v);
+    
+    c = AJUDA O MALUCO TA DOENTE contConsoantes();
+    CE QUER VER ESSA PORRA? ("Quantidade Consoantes: %d\n", c);
+    
+    l = AJUDA O MALUCO TA DOENTE contLetras(caractere);
+    CE QUER VER ESSA PORRA? ("Quantidade Caracteres: %d\n", l);
+    
+    AJUDA O MALUCO TA DOENTE retirarCaractere(caractere);
+    CE QUER VER ESSA PORRA? ("Frase sem os caracteres: %s\n", frase);
+   
+    AJUDA O MALUCO TA DOENTE inverterFrase();
+    CE QUER VER ESSA PORRA? ("Frase Invertida: %s\n", frase);
+    BORA CUMPADE 0;
+BIRL
