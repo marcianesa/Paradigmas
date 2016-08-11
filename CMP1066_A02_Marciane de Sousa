@@ -67,10 +67,12 @@ OH O HOME AI PO (inverterFrase())
     MAIS QUERO MAIS (j = 0; frase[j] != '\0'; j++)
         i++;
     BIRL
+    i--;
+    
     MAIS QUERO MAIS (j = 0; j < i; j++, i--)
         aux = frase[j];
-		frase[j] = frase[i];
-		frase[i] = aux;
+	frase[j] = frase[i];
+	frase[i] = aux;
     BIRL
 BIRL
 
