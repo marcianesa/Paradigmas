@@ -1,0 +1,131 @@
+parent('Manoel Ricardo', 'Marciane').
+parent('Maria Osneide', 'Marciane').
+parent('Manoel Ricardo', 'Tayane').
+parent('Maria Osneide', 'Tayane').
+parent('Manoel Ricardo', 'Paulo').
+parent('Maria Osneide', 'Paulo').
+parent('Carlos', 'Tallys').
+parent('Maria Osneide', 'Tallys').
+parent('Manoel Ricardo', 'Gabriela').
+parent('Carol', 'Gabriela').
+parent('Manoel Ricardo', 'Suele').
+parent('Ana', 'Suele').
+parent('José', 'Manoel Ricardo').
+parent('Maria Senhorinha', 'Manoel Ricardo').
+parent('José', 'Cláudia').
+parent('Maria Senhorinha', 'Cláudia').
+parent('José', 'Maristela').
+parent('Maria Senhorinha', 'Maristela').
+parent('José', 'Joseane').
+parent('Maria Senhorinha', 'Joseane').
+parent('Cláudia', 'Diego').
+parent('Cláudia', 'Diogo').
+parent('Cláudia', 'Daniel').
+parent('Maristela', 'Rafael').
+parent('Maristela', 'Maiara').
+parent('Maristela', 'Deise').
+parent('Joseane', 'Eduardo').
+parent('Joseane', 'Estefane').
+parent('João', 'Maria Osneide').
+parent('Jovelina', 'Maria Osneide').
+man('Manoel Ricardo', 'José', 'João', 'Paulo', 'Tallys', 'Eduardo', 'Diego', 'Diogo', 'Rafael', 'Carlos').
+woman('Maria Osneide', 'Jovelina', 'Maria Senhorinha', 'Marciane', 'Tayane', 'Gabriela', 'Suele', 'Cláudia', 'Joseane', 'Maristela', 'Maiara', 'Deise', 'Estefane', 'Carol', 'Ana').
+
+% Regras
+
+father(X, Y) :-
+    parent(X, Y),
+    man(X).
+
+mother(X, Y) :-
+    parent(X, Y),
+    woman(X).
+
+son(X, Y) :-
+    parent(Y, X),
+    man(X).
+
+daughter(X, Y) :-
+    parent(Y, X),
+    woman(X).
+
+sibling(X, Y) :-
+    father(F, X),
+    father(F, Y),
+    mother(M, X),
+    mother(M, Y),
+    not(X = Y).
+
+brother(X, Y) :-
+    sibling(X, Y),
+    man(X).
+
+sister(X, Y) :-
+    sibling(X, Y),
+    woman(X).
+
+half_sibling(X, Y) :-
+    (father(F, X),
+     father(F, Y);
+     mother(M, X),
+     mother(M, Y)),
+    not(sibling(X, Y)),
+    not(X = Y).
+
+half_brother(X, Y) :-
+    half_sibling(X, Y),
+    man(X).
+
+half_sister(X, Y) :-
+    half_sibling(X, Y),
+    woman(X).
+
+uncle(X, Y) :-
+    (brother(X, Z);
+     half_brother(X, Z)),
+    parent(Z, Y).
+
+aunt(X, Y) :-
+    (sister(X, Z);
+     half_sister(X, Z)),
+    parent(Z, Y).
+
+cousin(X, Y) :-
+    aunt(M, X),
+    mother(M, Y);
+    uncle(P, X),
+    father(P, Y).
+
+nephew(X, Y) :-
+    (aunt(Y, X);
+     uncle(Y, X)),
+    man(X).
+
+niece(X, Y) :-
+    (aunt(Y, X);
+     uncle(Y, X)),
+    woman(X).
+
+grandparent(X, Z) :-
+    parent(Y, Z),
+    parent(X, Y).
+
+grandpa(X, Z) :-
+    grandparent(X, Z),
+    man(X).
+
+grandma(X, Z) :-
+    grandparent(X, Z),
+    woman(X).
+
+grandson(X, Z) :-
+    grandparent(Z, X),
+    man(X).
+
+granddaughter(X, Z) :-
+    grandparent(Z, X),
+    woman(X).
+
+% As regras são sempre da esquerda para direita,
+% por exemplo, mother(A, B), leia:
+% A é mother de B.
